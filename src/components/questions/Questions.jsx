@@ -19,6 +19,9 @@ export default function Questions() {
   }, []);
 
   console.log(questions)
+
+ if (questions.length === 0) return <div className='loading'>Loading...</div>;
+  
   return(
    <>
     <p>codigo</p>
