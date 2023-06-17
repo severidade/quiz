@@ -18,6 +18,7 @@ const Questions = () => {
     };
 
     fetchQuestions();
+    
   }, []);
 
   const handleNextQuestion = () => {
@@ -29,11 +30,14 @@ const Questions = () => {
     }
   };
 
-  const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value);
+  const handleOptionClick = (optionIndex) => {
+    setSelectedOption(optionIndex.toString());
   };
 
+  console.log(questions);
+  
   return (
+
     <div>
       {questions.length > 0 && currentQuestionIndex < questions.length ? (
         <div>
@@ -42,16 +46,12 @@ const Questions = () => {
           <ul>
             {questions[currentQuestionIndex].options.map((option, index) => (
               <li key={index}>
-                <label>
-                  <input
-                    type="radio"
-                    name="answer"
-                    value={index}
-                    checked={selectedOption === index.toString()}
-                    onChange={handleOptionChange}
-                  />
+                <button
+                  onClick={() => handleOptionClick(index)}
+                  className={selectedOption === index.toString() ? 'selected' : ''}
+                >
                   {option}
-                </label>
+                </button>
               </li>
             ))}
           </ul>
