@@ -1,12 +1,20 @@
 import React from 'react';
-import Questions from './components/Questions';
+import { Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Trivia from './pages/Trivia';
+import Feedback from './pages/Feedback';
+import NotFound from './pages/NotFound';
 
 const App = () => {
   return (
-    <div>
-      <h1>Minha Aplicação</h1>
-      <Questions />
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={ <Home /> } />
+        <Route path="/trivia" element={<Trivia /> } />
+        <Route path="/feedback" element={<Feedback /> } />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
   );
 };
 
