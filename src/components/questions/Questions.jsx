@@ -7,6 +7,7 @@ export default function Questions() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
   const [showResult, setShowResult] = useState(false);
+  const [correctAnswers, setCorrectAnswers] = useState(0);
 
   useEffect(() => {
     const fetchQuestions = async () => {
@@ -24,6 +25,12 @@ export default function Questions() {
   const handleOptionClick = (optionIndex) => {
     setSelectedOption(optionIndex);
     setShowResult(true);
+
+    const currentQuestion = questions[currentQuestionIndex];
+    const correctOptionIndex = currentQuestion.correctOption;
+    if (optionIndex === correctOptionIndex) {
+      setCorrectAnswers(correctAnswers + 1);
+    }
   };
 
   const handleNextQuestion = () => {
@@ -76,6 +83,9 @@ export default function Questions() {
           {currentQuestionIndex === questions.length - 1 ? 'Finalizar' : 'Próxima Pergunta'}
         </button>
       )}
+      <div>
+        Total de respostas corretas: {correctAnswers}
+      </div>
     </div>
   );
 }
